@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b4e"><title>GLOBAL INVEST AFRICA — Démonstration</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-banner">MODE DÉMONSTRATION · AUCUN ARGENT RÉEL · AUCUN PAIEMENT</div>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">GIA</div><div><strong>GLOBAL INVEST</strong><small>AFRICA</small></div></div>
+    <div class="nav-label">ESPACE MEMBRE</div>
+    <button class="nav active" data-page="dashboard">▦ <span>Tableau de bord</span></button>
+    <button class="nav" data-page="operations">◈ <span>Opérations</span></button>
+    <button class="nav" data-page="simulator">⌁ <span>Simulateur 30 jours</span></button>
+    <button class="nav" data-page="history">◷ <span>Historique</span></button>
+    <div class="nav-label admin-label">GESTION</div>
+    <button class="nav" data-page="admin">⚙ <span>Administration</span></button>
+    <div class="sidebar-bottom"><div class="status-dot"></div><span>Prototype local actif</span></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button><div><div class="eyebrow">PLATEFORME COMMERCIALE</div><h1 id="pageTitle">Tableau de bord</h1></div><div class="user-pill"><div class="avatar">M</div><div><strong id="userName">Membre démo</strong><small id="userRole">Compte de test</small></div></div></header>
+    <div class="content">
+      <section id="authPanel" class="auth-panel hidden">
+        <div><div class="eyebrow">ACCÈS MEMBRE</div><h2>Bienvenue sur GLOBAL INVEST AFRICA</h2><p>Créez un compte de test ou connectez-vous. Aucun dépôt ni retrait réel n'est possible.</p></div>
+        <form id="authForm"><label>Nom affiché<input id="authName" placeholder="Ex. Marie Kabeya"></label><label>Adresse e-mail<input id="authEmail" type="email" placeholder="vous@exemple.com" required></label><label>Mot de passe<input id="authPassword" type="password" minlength="6" placeholder="6 caractères minimum" required></label><div class="auth-actions"><button class="btn primary" type="submit" id="authSubmit">Créer un compte de test</button><button class="btn secondary" type="button" id="toggleAuth">J'ai déjà un compte</button></div><p class="tiny" id="authNote">Mode local : les données restent dans ce navigateur. Configurez Supabase pour activer l'authentification backend.</p></form>
+      </section>
+      <section id="dashboard" class="page">
+        <div class="welcome-row"><div><p class="eyebrow">VOTRE ESPACE</p><h2>Bonjour, <span id="welcomeName">Membre</span> 👋</h2><p class="muted">Suivez les opérations commerciales et explorez des scénarios simulés.</p></div><button class="btn primary" data-goto="operations">Explorer les opérations <span>↗</span></button></div>
+        <div class="notice"><span class="notice-icon">i</span><div><strong>Simulation uniquement</strong><p>Les montants et résultats affichés sont fictifs. Ils ne constituent ni une offre d'investissement ni une promesse de rendement.</p></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Capital simulé</span><span class="stat-icon">◉</span></div><strong id="statCapital">250 000 FC</strong><small>Valeur fictive de départ</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Opérations suivies</span><span class="stat-icon">◈</span></div><strong id="statOperations">2</strong><small>Exemples de démonstration</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Résultat simulé</span><span class="stat-icon">⌁</span></div><strong id="statProfit">+18 500 FC</strong><small>Non garanti · données fictives</small></article>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">SÉLECTION</p><h3>Opérations commerciales</h3></div><button class="text-button" data-goto="operations">Tout voir →</button></div>
+        <div id="featuredOps" class="operation-grid"></div>
+        <div class="section-heading"><div><p class="eyebrow">SUIVI</p><h3>Activité récente</h3></div><button class="text-button" data-goto="history">Historique →</button></div>
+        <div id="recentActivity" class="table-card"></div>
+      </section>
+      <section id="operations" class="page hidden"><div class="page-intro"><div><p class="eyebrow">CATALOGUE</p><h2>Opérations commerciales</h2><p class="muted">Découvrez des exemples de stocks et suivez leurs résultats simulés.</p></div><div class="filter-pill">Durée cible : 30 jours</div></div><div id="allOps" class="operation-grid"></div></section>
+      <section id="simulator" class="page hidden"><div class="page-intro"><div><p class="eyebrow">OUTIL DE PLANIFICATION</p><h2>Simulateur commercial</h2><p class="muted">Estimez le résultat d'une opération à partir de recettes et de coûts hypothétiques.</p></div></div>
+        <div class="sim-layout"><div class="panel"><h3>Paramètres de simulation</h3><label>Budget de stock (FC)<div class="input-suffix"><input id="stockCost" type="number" min="10000" step="10000" value="100000"><span>FC</span></div></label><label>Recettes prévues (FC)<div class="input-suffix"><input id="salesRevenue" type="number" min="0" step="10000" value="150000"><span>FC</span></div></label><label>Frais de vente et livraison (FC)<div class="input-suffix"><input id="operatingCosts" type="number" min="0" step="5000" value="20000"><span>FC</span></div></label><label>Réserve / autres frais (FC)<div class="input-suffix"><input id="otherCosts" type="number" min="0" step="5000" value="5000"><span>FC</span></div></label><label>Durée estimée<select id="simDays"><option value="30">30 jours</option><option value="45">45 jours</option><option value="60">60 jours</option><option value="90">90 jours</option></select></label><button id="runSimulation" class="btn primary full">Calculer le scénario</button></div>
+        <div class="panel results-panel"><div class="result-header"><div><p class="eyebrow">RÉSULTAT ESTIMÉ</p><h3 id="resultLabel">Scénario de base</h3></div><span class="round-icon">⌁</span></div><div class="result-big"><small>Résultat commercial estimé</small><strong id="resultProfit">25 000 FC</strong><span id="resultBadge" class="result-badge positive">Marge positive</span></div><div class="result-line"><span>Recettes prévues</span><strong id="rRevenue">150 000 FC</strong></div><div class="result-line"><span>Coût du stock</span><strong id="rStock">100 000 FC</strong></div><div class="result-line"><span>Frais totaux</span><strong id="rCosts">25 000 FC</strong></div><div class="result-line"><span>Marge sur coût du stock</span><strong id="rMargin">25,0 %</strong></div><div class="chart-wrap"><div class="chart-label"><span>Recettes</span><span id="chartRevenue">150 000 FC</span></div><div class="bar"><span id="revenueBar" class="bar-revenue"></span></div><div class="chart-label"><span>Coûts totaux</span><span id="chartCost">125 000 FC</span></div><div class="bar"><span id="costBar" class="bar-cost"></span></div></div><p class="tiny">Estimation simplifiée, avant impôts et autres obligations éventuelles. Les résultats réels peuvent être inférieurs ou négatifs.</p></div></div>
+      </section>
+      <section id="history" class="page hidden"><div class="page-intro"><div><p class="eyebrow">TRAÇABILITÉ</p><h2>Historique de démonstration</h2><p class="muted">Les événements sont fictifs et stockés localement dans ce prototype.</p></div><button id="exportCsv" class="btn secondary">Exporter CSV ↓</button></div><div id="historyTable" class="table-card"></div></section>
+      <section id="admin" class="page hidden"><div class="page-intro"><div><p class="eyebrow">ESPACE PRIVÉ · DÉMO</p><h2>Administration</h2><p class="muted">Gestion simulée des opérations. Ne pas utiliser pour traiter des fonds réels.</p></div><span class="admin-chip">Administrateur démo</span></div><div class="notice warning"><span class="notice-icon">!</span><div><strong>Accès de démonstration</strong><p>Cette interface n'est pas protégée par un serveur dans le mode local. Ne publiez pas de données confidentielles. Activez les politiques RLS et une vraie authentification avant toute mise en production.</p></div></div><div class="admin-stats"><div class="stat-card"><small>Opérations au catalogue</small><strong id="adminOpCount">4</strong></div><div class="stat-card"><small>Statut global</small><strong class="small-strong">Démonstration</strong></div><div class="stat-card"><small>Paiements</small><strong class="small-strong">Désactivés</strong></div></div><div class="panel"><div class="section-heading no-margin"><div><h3>Ajouter une opération fictive</h3><p class="muted">Elle apparaîtra dans le catalogue local.</p></div></div><form id="addOperationForm" class="admin-form"><label>Nom de l'opération<input id="newOpName" required placeholder="Ex. Stock de sacs et accessoires"></label><label>Catégorie<select id="newOpCategory"><option>Cosmétiques</option><option>Mode femme</option><option>Mode homme</option><option>Accessoires</option><option>Mixte</option></select></label><label>Budget de stock (FC)<input id="newOpBudget" type="number" min="1000" required value="100000"></label><label>Durée (jours)<select id="newOpDays"><option>30</option><option>45</option><option>60</option><option>90</option></select></label><label class="wide">Description<textarea id="newOpDescription" rows="3" placeholder="Décrivez le stock et les hypothèses commerciales."></textarea></label><button class="btn primary" type="submit">Ajouter à la démo</button></form></div><div class="section-heading"><div><h3>Catalogue administrable</h3></div><button id="resetDemo" class="text-button danger">Réinitialiser les données</button></div><div id="adminOps" class="table-card"></div></section>
+      <footer><span>© GLOBAL INVEST AFRICA · Prototype V1</span><span>Démo sans argent réel · Pas une offre financière</span></footer>
+    </div>
+  </main>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body></html>
